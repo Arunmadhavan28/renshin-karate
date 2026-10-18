@@ -120,12 +120,13 @@ img {
 }
 
 .nav-inner {
-  max-width: 1080px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 0.85rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .nav-brand {
@@ -350,13 +351,14 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.3rem 0.75rem;
+  padding: 0.35rem 0.85rem;
   border-radius: var(--radius-pill);
   background: var(--apple-surface-secondary);
   border: 1px solid var(--apple-border-subtle);
   font-size: 0.76rem;
   font-weight: 500;
   color: var(--apple-text-secondary);
+  white-space: nowrap;
 }
 
 .apple-pill-tag.green {
