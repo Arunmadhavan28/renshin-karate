@@ -63,8 +63,14 @@ const PROGRAMS_DATA = {
       "Gradual belt progression under international federation standards"
     ],
     buttonText: "Enroll in Kids Program",
-    imgSrc: "assets/sensei_arunmadhavan_ceremony_clean.jpg",
-    imgAlt: "Kids Karate & Discipline belt award ceremony with Sensei Arunmadhavan E.V.R."
+    specs: {
+      target: "Children Ages 4–12",
+      ratio: "1:12 Capped Maximum",
+      duration: "60–75 Minutes / Class",
+      standard: "World Karate Federation (WKF)",
+      grading: "Quarterly Kyu Evaluation",
+      frequency: "Mon–Sat (Flexible Options)"
+    }
   },
   wkf: {
     badge: "INTERNATIONAL TOURNAMENT PODIUM TRAINING",
@@ -77,8 +83,14 @@ const PROGRAMS_DATA = {
       "Dedicated psychological composure and tournament stress inoculation"
     ],
     buttonText: "Join WKF Tournament Squad",
-    imgSrc: "assets/kct_stage_kata_clean.jpg",
-    imgAlt: "WKF Kumite & Kata martial demonstration at KCT Yugam stage"
+    specs: {
+      target: "Teens & Competitive Athletes",
+      ratio: "1:8 High-Performance Ratio",
+      duration: "75–90 Minutes / Class",
+      standard: "Olympic / WKF Tournament Rules",
+      grading: "Pre-Dan & Dan Accreditation",
+      frequency: "5–6 Days / Week Conditioning"
+    }
   },
   selfdefense: {
     badge: "EMPOWERING SITUATIONAL REFLEXES",
@@ -91,8 +103,14 @@ const PROGRAMS_DATA = {
       "Full-body cardiovascular conditioning and posture rejuvenation"
     ],
     buttonText: "Join Adults & Self-Defense",
-    imgSrc: "assets/dojo_tatami_clean.jpg",
-    imgAlt: "Impact-absorbent tatami flooring and training gear at Renshin Karate School"
+    specs: {
+      target: "Adults, College Students & Women",
+      ratio: "Personalized Coaching Groups",
+      duration: "60 Minutes / Class",
+      standard: "Practical Real-World Defense",
+      grading: "Optional Rank Examination",
+      frequency: "Evening & Weekend Batches"
+    }
   },
   vip: {
     badge: "PERSONALIZED 1-ON-1 MASTER MENTORSHIP",
@@ -105,8 +123,14 @@ const PROGRAMS_DATA = {
       "Accelerated belt progression with rigorous quality verification"
     ],
     buttonText: "Inquire for VIP Mentorship",
-    imgSrc: "assets/hero_master_ceremony.jpg",
-    imgAlt: "Master Arunmadhavan E.V.R. in personal ceremony presentation"
+    specs: {
+      target: "Executives & Elite Medalists",
+      ratio: "Strict 1-on-1 Private Floor",
+      duration: "Custom Executive Slots",
+      standard: "Bespoke Biomechanical Plan",
+      grading: "Accelerated Master Dan Track",
+      frequency: "By Appointment Only"
+    }
   }
 };
 
@@ -116,7 +140,12 @@ function initProgramSegments() {
   const titleEl = document.getElementById('programTitle');
   const descEl = document.getElementById('programDesc');
   const featuresEl = document.getElementById('programFeatures');
-  const mediaImg = document.getElementById('programMediaImg');
+  const specTarget = document.getElementById('specTarget');
+  const specRatio = document.getElementById('specRatio');
+  const specDuration = document.getElementById('specDuration');
+  const specStandard = document.getElementById('specStandard');
+  const specGrading = document.getElementById('specGrading');
+  const specFrequency = document.getElementById('specFrequency');
 
   if (!buttons.length || !titleEl) return;
 
@@ -142,8 +171,15 @@ function initProgramSegments() {
           badgeEl.textContent = data.badge;
           titleEl.textContent = data.title;
           descEl.textContent = data.desc;
-          mediaImg.src = data.imgSrc;
-          mediaImg.alt = data.imgAlt;
+
+          if (specTarget && data.specs) {
+            specTarget.textContent = data.specs.target;
+            specRatio.textContent = data.specs.ratio;
+            specDuration.textContent = data.specs.duration;
+            specStandard.textContent = data.specs.standard;
+            specGrading.textContent = data.specs.grading;
+            specFrequency.textContent = data.specs.frequency;
+          }
 
           featuresEl.innerHTML = data.features.map(f => `
             <li>
