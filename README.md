@@ -3,7 +3,7 @@
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Deploy-success?style=for-the-badge&logo=github)](https://arunmadhavan28.github.io/renshin-karate/)
 [![Rating](https://img.shields.io/badge/Google%20Rating-5.0%20%E2%98%85%20(76%20Reviews)-F59E0B?style=for-the-badge&logo=google)](https://business.google.com/n/815353001221534519/searchprofile)
-[![Lineage](https://img.shields.io/badge/Lineage-WKF%20%26%20Alan--Thilak-EF4444?style=for-the-badge)](https://arunmadhavan28.github.io/renshin-karate/#about)
+[![Lineage](https://img.shields.io/badge/Lineage-WKF%20Standards-EF4444?style=for-the-badge)](https://arunmadhavan28.github.io/renshin-karate/#founder)
 
 Welcome to the official repository for **Renshin Karate School International**, located in Peelamedu, Coimbatore, Tamil Nadu. 
 

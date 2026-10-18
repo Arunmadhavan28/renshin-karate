@@ -101,7 +101,7 @@ const PROGRAMS_DATA = {
     features: [
       "High-speed video kinematic breakdown of kicking and striking arcs",
       "Personalized training volume synchronized with executive schedules",
-      "Direct line of mentorship under Alan-Thilak Karate International lineage",
+      "Direct 1-on-1 mentorship under Founder Sensei Arunmadhavan E.V.R.",
       "Accelerated belt progression with rigorous quality verification"
     ],
     buttonText: "Inquire for VIP Mentorship",
