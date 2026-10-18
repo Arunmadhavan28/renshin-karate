@@ -37,10 +37,13 @@
   --radius-lg: 28px;
   --radius-pill: 980px;
 
-  /* Apple Micro-Transitions */
-  --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
-  --transition-quick: 0.2s var(--ease-apple);
+  /* Apple Native Spring & Flow Easing */
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-quick: 0.18s var(--ease-apple);
   --transition-smooth: 0.35s var(--ease-apple);
+  --transition-flow: 0.45s var(--ease-apple);
 }
 
 *, *::before, *::after {
@@ -51,6 +54,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
   font-size: 16px;
   background-color: var(--apple-black);
   color: var(--apple-text-primary);
@@ -64,6 +68,26 @@ body {
   color: var(--apple-text-primary);
   line-height: 1.5;
   overflow-x: hidden;
+}
+
+/* Apple Native Tactile Micro-Press States */
+button:active,
+a:active,
+.segment-btn:active,
+.apple-btn-primary:active,
+.apple-btn-secondary:active,
+.nav-cta-btn:active {
+  transform: scale(0.975);
+  transition-duration: 0.08s;
+}
+
+/* Apple Accessibility Focus Rings */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--apple-blue);
+  outline-offset: 3px;
 }
 
 a {
@@ -139,18 +163,19 @@ img {
   color: var(--apple-text-primary);
 }
 
-.brand-kanji {
-  width: 28px;
-  height: 28px;
-  border-radius: 7px;
-  background: #1c1c1e;
-  border: 1px solid var(--apple-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--apple-gold);
+.nav-brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+  flex-shrink: 0;
+  transition: transform var(--transition-quick), box-shadow var(--transition-quick);
+}
+
+.nav-brand:hover .nav-brand-logo {
+  transform: scale(1.08) rotate(4deg);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
 }
 
 .nav-menu {
@@ -165,10 +190,14 @@ img {
   font-size: 0.84rem;
   font-weight: 400;
   letter-spacing: -0.01em;
+  position: relative;
+  transition: color var(--transition-quick);
 }
 
-.nav-menu a:hover {
+.nav-menu a:hover,
+.nav-menu a.active {
   color: var(--apple-text-primary);
+  font-weight: 500;
 }
 
 .nav-cta-btn {
@@ -195,8 +224,37 @@ img {
 .hero-keynote {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 5rem 1.5rem 4rem;
+  padding: 4rem 1.5rem 4rem;
   text-align: center;
+}
+
+.hero-brand-emblem-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.hero-brand-emblem {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 50px rgba(212, 175, 55, 0.3), 0 20px 40px rgba(0, 0, 0, 0.8);
+  transition: transform 0.45s var(--ease-apple), box-shadow 0.45s ease;
+  animation: heroEmblemFloat 6s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.hero-brand-emblem:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 70px rgba(212, 175, 55, 0.45), 0 30px 60px rgba(0, 0, 0, 0.9);
+}
+
+@keyframes heroEmblemFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-7px); }
 }
 
 .hero-eyebrow {
@@ -512,6 +570,21 @@ img {
   font-size: 0.85rem;
   color: var(--apple-text-secondary);
   line-height: 1.45;
+}
+
+.bento-seal-emblem {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.22);
+  flex-shrink: 0;
+  transition: transform var(--transition-quick), box-shadow var(--transition-quick);
+}
+
+.bento-card:hover .bento-seal-emblem {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.35);
 }
 
 /* ==========================================================================
@@ -904,6 +977,38 @@ img {
   transform: scale(1);
 }
 
+.modal-header-branding {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--apple-border-subtle);
+}
+
+.modal-brand-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+  flex-shrink: 0;
+}
+
+.modal-brand-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--apple-gold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.modal-brand-sub {
+  font-size: 0.72rem;
+  color: var(--apple-text-secondary);
+}
+
 .modal-close {
   position: absolute;
   top: 1.25rem;
@@ -986,6 +1091,14 @@ img {
   margin-bottom: 1rem;
 }
 
+.footer-brand-logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  flex-shrink: 0;
+}
+
 .footer-links-list {
   list-style: none;
   display: flex;
@@ -1009,6 +1122,118 @@ img {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+/* ==========================================================================
+   APPLE NATIVE TOAST HUD (DYNAMIC ISLAND STYLE)
+   ========================================================================== */
+
+.apple-toast {
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px) scale(0.92);
+  z-index: 3000;
+  background: rgba(22, 22, 23, 0.94);
+  backdrop-filter: saturate(190%) blur(25px);
+  -webkit-backdrop-filter: saturate(190%) blur(25px);
+  border: 1px solid var(--apple-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+  border-radius: var(--radius-pill);
+  padding: 0.65rem 1.35rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.4s var(--ease-apple), opacity 0.3s ease;
+}
+
+.apple-toast.visible {
+  transform: translateX(-50%) translateY(0) scale(1);
+  opacity: 1;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--apple-text-primary);
+}
+
+.toast-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--apple-green);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   MOBILE QUICK ACTION FLOATING BAR (APPLE GLASS CAPSULE)
+   ========================================================================== */
+
+.mobile-action-bar {
+  display: none;
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 1500;
+  background: rgba(22, 22, 23, 0.88);
+  backdrop-filter: saturate(180%) blur(25px);
+  -webkit-backdrop-filter: saturate(180%) blur(25px);
+  border: 1px solid var(--apple-border);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+  border-radius: var(--radius-pill);
+  padding: 0.6rem 1.15rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mobile-action-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-action-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--apple-text-primary);
+  line-height: 1.2;
+}
+
+.mobile-action-sub {
+  font-size: 0.7rem;
+  color: var(--apple-text-secondary);
+}
+
+.mobile-action-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mobile-call-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--apple-surface-secondary);
+  border: 1px solid var(--apple-border);
+  color: var(--apple-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-quick), background var(--transition-quick);
+}
+
+.mobile-call-btn:hover {
+  background: var(--apple-surface-elevated);
 }
 
 /* ==========================================================================
@@ -1047,6 +1272,15 @@ img {
   }
   .nav-menu {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-action-bar {
+    display: flex;
+  }
+  body {
+    padding-bottom: 5.5rem;
   }
 }
 

@@ -18,11 +18,20 @@
   <meta property="og:title" content="Renshin Karate School International — Master Arunmadhavan E.V.R.">
   <meta property="og:description" content="Forge discipline, focus, and championship martial arts under International Medalist Arunmadhavan E.V.R. in Peelamedu, Coimbatore. 5.0★ Verified Google Rating.">
   <meta property="og:url" content="https://arunmadhavan28.github.io/renshin-karate/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://arunmadhavan28.github.io/renshin-karate/assets/logo.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Renshin Karate School International Official Crest">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Renshin Karate School International | Peelamedu, Coimbatore">
   <meta name="twitter:description" content="5.0★ Rated Martial Arts Academy in Peelamedu, Coimbatore. Train directly under International Medalist Arunmadhavan E.V.R.">
+  <meta name="twitter:image" content="https://arunmadhavan28.github.io/renshin-karate/assets/logo.jpg">
 
-  <!-- Apple Touch & Theme Settings -->
+  <!-- Apple Touch & Favicon Architecture -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="preload" as="image" href="assets/logo-256.png" type="image/png">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -43,6 +52,8 @@
     "alternateName": ["Ren Shin Karate School", "Renshin Karate Academy Coimbatore"],
     "description": "Premier martial arts academy in Peelamedu, Coimbatore, founded and led by International Karate Medalist Arunmadhavan E.V.R. Built on World Karate Federation (WKF) championship standards.",
     "url": "https://arunmadhavan28.github.io/renshin-karate/",
+    "image": "https://arunmadhavan28.github.io/renshin-karate/assets/logo.jpg",
+    "logo": "https://arunmadhavan28.github.io/renshin-karate/assets/logo.png",
     "telephone": "+919360325750",
     "priceRange": "$$",
     "address": {
@@ -151,7 +162,7 @@
   <nav class="apple-nav" aria-label="Primary Navigation">
     <div class="nav-inner">
       <a href="#" class="nav-brand" aria-label="Renshin Karate School International">
-        <div class="brand-kanji">武</div>
+        <img src="assets/favicon-64.png" alt="Renshin Karate School International Official Crest" class="nav-brand-logo" width="32" height="32">
         <span>Renshin Karate International</span>
       </a>
 
@@ -178,6 +189,9 @@
        HERO KEYNOTE SECTION (CUPERTINO GRADE)
        ========================================================================= -->
   <section class="hero-keynote">
+    <div class="hero-brand-emblem-wrap">
+      <img src="assets/logo-256.png" srcset="assets/logo-256.png 1x, assets/logo-512.png 2x" alt="Renshin Karate School International Official Crest" class="hero-brand-emblem" width="116" height="116" fetchpriority="high">
+    </div>
     <div class="hero-eyebrow">ACADEMY OF CHAMPIONS • PEELAMEDU, COIMBATORE</div>
     <h1 class="hero-headline">
       Unshakable discipline.<br>
@@ -268,10 +282,13 @@
     <div class="apple-bento-grid">
       <!-- Card 1: Founder Persona -->
       <div class="bento-card span-2">
-        <div>
-          <div class="section-eyebrow" style="color: var(--apple-blue); margin-bottom: 0.75rem;">CHIEF INSTRUCTOR & FOUNDER</div>
-          <div class="bento-metric" style="font-size: 2.6rem;">Sensei Arunmadhavan E.V.R.</div>
-          <div class="bento-metric-label">International Karate Medalist • Certified WKF Coach</div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap;">
+          <div>
+            <div class="section-eyebrow" style="color: var(--apple-blue); margin-bottom: 0.75rem;">CHIEF INSTRUCTOR & FOUNDER</div>
+            <div class="bento-metric" style="font-size: 2.6rem;">Sensei Arunmadhavan E.V.R.</div>
+            <div class="bento-metric-label">International Karate Medalist • Certified WKF Coach</div>
+          </div>
+          <img src="assets/logo-256.png" alt="Renshin Karate School International Official Crest" class="bento-seal-emblem" width="80" height="80">
         </div>
         <p class="bento-metric-desc" style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--apple-text-secondary);">
           Founder and Chief Instructor of Renshin Karate School International. Competing on national and international podiums with over a decade of dedication to WKF Kumite, Master Arunmadhavan has mentored hundreds of students in Coimbatore, fostering disciplined character, agility, and elite tournament champions.
@@ -675,8 +692,12 @@
   <div class="apple-modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="apple-modal-window">
       <button class="modal-close" id="closeModalBtn" aria-label="Close dialog">&times;</button>
-      <div style="font-size: 0.8rem; font-weight: 600; color: var(--apple-blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.35rem;">
-        RENSHIN KARATE INTERNATIONAL
+      <div class="modal-header-branding">
+        <img src="assets/favicon-64.png" alt="Renshin Crest" width="38" height="38" class="modal-brand-logo">
+        <div>
+          <div class="modal-brand-tag">RENSHIN KARATE INTERNATIONAL</div>
+          <div class="modal-brand-sub">Admissions Desk • Peelamedu Dojo</div>
+        </div>
       </div>
       <h3 id="modalTitle" style="font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; letter-spacing: -0.02em;">
         Book Your Free Trial
@@ -730,8 +751,8 @@
     <div class="footer-content">
       <div class="footer-columns">
         <div>
-          <div class="footer-col-title" style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--apple-gold); font-size: 1rem;">武</span>
+          <div class="footer-col-title" style="display: flex; align-items: center; gap: 0.65rem;">
+            <img src="assets/favicon-64.png" alt="Renshin Logo" width="26" height="26" class="footer-brand-logo">
             <span>Renshin Karate International</span>
           </div>
           <p style="line-height: 1.6; margin-bottom: 1.25rem;">
@@ -785,6 +806,28 @@
       </div>
     </div>
   </footer>
+
+  <!-- Apple Native Toast HUD (Dynamic Island style) -->
+  <div id="appleToast" class="apple-toast" role="status" aria-live="polite">
+    <div class="toast-content">
+      <span class="toast-icon">✓</span>
+      <span class="toast-message" id="toastMessage">Class reservation initiated</span>
+    </div>
+  </div>
+
+  <!-- Mobile Quick Action Floating Bar (Apple Glass Capsule) -->
+  <div class="mobile-action-bar" aria-label="Quick Actions">
+    <div class="mobile-action-left">
+      <span class="mobile-action-title">Admissions Open</span>
+      <span class="mobile-action-sub">Peelamedu Dojo</span>
+    </div>
+    <div class="mobile-action-right">
+      <button class="apple-btn-primary trigger-booking-modal" style="padding: 0.45rem 1rem; font-size: 0.82rem;">Book Trial</button>
+      <a href="tel:+919360325750" class="mobile-call-btn" aria-label="Call Dojo Directly">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+    </div>
+  </div>
 
   <!-- Interactive JavaScript Runtime -->
   <script src="app.js"></script>

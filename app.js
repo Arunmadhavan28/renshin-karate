@@ -1,6 +1,6 @@
 /**
  * RENSHIN KARATE INTERNATIONAL — 100% APPLE-NATIVE INTERACTIVE RUNTIME
- * Cupertino Grade Interactivity, Micro-animations, and Real-time Status
+ * Cupertino Grade Interactivity, Micro-animations, Real-time Status & Instant Flow Speed
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initAEOAccordion();
   initBookingModal();
   initSmoothScroll();
+  initScrollSpy();
+  initQuickCopy();
 });
 
 /* --------------------------------------------------------------------------
@@ -49,7 +51,7 @@ function initLiveStatus() {
 }
 
 /* --------------------------------------------------------------------------
-   2. APPLE SEGMENTED CONTROLLER (PROGRAMS)
+   2. APPLE SEGMENTED CONTROLLER (PROGRAMS - INSTANT 0ms FLOW SPEED)
    -------------------------------------------------------------------------- */
 const PROGRAMS_DATA = {
   kids: {
@@ -146,12 +148,15 @@ function initProgramSegments() {
   const specStandard = document.getElementById('specStandard');
   const specGrading = document.getElementById('specGrading');
   const specFrequency = document.getElementById('specFrequency');
+  const panel = document.getElementById('programPanel');
 
   if (!buttons.length || !titleEl) return;
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Toggle button states
+      if (btn.classList.contains('active')) return;
+
+      // Instant physical response
       buttons.forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-selected', 'false');
@@ -162,36 +167,38 @@ function initProgramSegments() {
       const programKey = btn.getAttribute('data-program');
       const data = PROGRAMS_DATA[programKey] || PROGRAMS_DATA.kids;
 
-      // Animate transition smoothly
-      const panel = document.getElementById('programPanel');
-      if (panel) {
-        panel.style.opacity = '0.75';
-        panel.style.transform = 'scale(0.995)';
-        setTimeout(() => {
-          badgeEl.textContent = data.badge;
-          titleEl.textContent = data.title;
-          descEl.textContent = data.desc;
+      // 0ms Hardware-accelerated flow update
+      requestAnimationFrame(() => {
+        badgeEl.textContent = data.badge;
+        titleEl.textContent = data.title;
+        descEl.textContent = data.desc;
 
-          if (specTarget && data.specs) {
-            specTarget.textContent = data.specs.target;
-            specRatio.textContent = data.specs.ratio;
-            specDuration.textContent = data.specs.duration;
-            specStandard.textContent = data.specs.standard;
-            specGrading.textContent = data.specs.grading;
-            specFrequency.textContent = data.specs.frequency;
-          }
+        if (specTarget && data.specs) {
+          specTarget.textContent = data.specs.target;
+          specRatio.textContent = data.specs.ratio;
+          specDuration.textContent = data.specs.duration;
+          specStandard.textContent = data.specs.standard;
+          specGrading.textContent = data.specs.grading;
+          specFrequency.textContent = data.specs.frequency;
+        }
 
-          featuresEl.innerHTML = data.features.map(f => `
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-              <span>${f}</span>
-            </li>
-          `).join('');
+        featuresEl.innerHTML = data.features.map(f => `
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>${f}</span>
+          </li>
+        `).join('');
 
-          panel.style.opacity = '1';
-          panel.style.transform = 'scale(1)';
-        }, 150);
-      }
+        if (panel) {
+          panel.animate([
+            { opacity: 0.85, transform: 'translateY(2px)' },
+            { opacity: 1, transform: 'translateY(0)' }
+          ], {
+            duration: 180,
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
+          });
+        }
+      });
     });
   });
 }
@@ -212,7 +219,7 @@ function initAEOAccordion() {
     questionBtn.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
 
-      // Close all items
+      // Close all items with native physics
       items.forEach(otherItem => {
         otherItem.classList.remove('open');
         const otherBtn = otherItem.querySelector('.aeo-question');
@@ -232,11 +239,29 @@ function initAEOAccordion() {
 }
 
 /* --------------------------------------------------------------------------
-   4. APPLE NATIVE TRIAL BOOKING MODAL & WHATSAPP INTEGRATION
+   4. APPLE DYNAMIC ISLAND TOAST HUD
+   -------------------------------------------------------------------------- */
+function showAppleToast(message, icon = '✓') {
+  const toast = document.getElementById('appleToast');
+  const messageEl = document.getElementById('toastMessage');
+  if (!toast || !messageEl) return;
+
+  messageEl.textContent = message;
+  const iconEl = toast.querySelector('.toast-icon');
+  if (iconEl) iconEl.textContent = icon;
+
+  toast.classList.add('visible');
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => {
+    toast.classList.remove('visible');
+  }, 3200);
+}
+
+/* --------------------------------------------------------------------------
+   5. APPLE NATIVE TRIAL BOOKING MODAL & WHATSAPP INTEGRATION
    -------------------------------------------------------------------------- */
 function initBookingModal() {
   const modal = document.getElementById('bookingModal');
-  const triggerBtns = document.querySelectorAll('.trigger-booking-modal');
   const closeBtn = document.getElementById('closeModalBtn');
   const form = document.getElementById('trialBookingForm');
 
@@ -245,14 +270,27 @@ function initBookingModal() {
   const openModal = () => {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden'; // Lock background scrolling
+    const firstInput = document.getElementById('applicantName');
+    if (firstInput) setTimeout(() => firstInput.focus(), 80);
   };
 
   const closeModal = () => {
     modal.classList.remove('active');
     document.body.style.overflow = '';
+    if (window.location.hash === '#trial') {
+      history.replaceState(null, null, ' ');
+    }
   };
 
-  triggerBtns.forEach(btn => btn.addEventListener('click', openModal));
+  // Robust Event Delegation for any trial trigger
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.trigger-booking-modal, a[href="#trial"], a[href$="#trial"]');
+    if (trigger) {
+      e.preventDefault();
+      openModal();
+    }
+  });
+
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
   // Close when clicking outside dialog window
@@ -267,7 +305,17 @@ function initBookingModal() {
     }
   });
 
-  // Form submission -> Instant structured WhatsApp direct link
+  // Check initial hash and hash changes
+  if (window.location.hash === '#trial') {
+    setTimeout(openModal, 100);
+  }
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === '#trial') {
+      openModal();
+    }
+  });
+
+  // Form submission -> Instant structured WhatsApp direct link + Toast feedback
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -287,6 +335,8 @@ function initBookingModal() {
       const encoded = encodeURIComponent(whatsappText);
       const whatsappUrl = `https://wa.me/919360325750?text=${encoded}`;
 
+      showAppleToast('Connecting with Sensei Arunmadhavan via WhatsApp...', '🥋');
+
       // Open WhatsApp in new tab
       window.open(whatsappUrl, '_blank');
       closeModal();
@@ -295,7 +345,7 @@ function initBookingModal() {
 }
 
 /* --------------------------------------------------------------------------
-   5. SMOOTH SCROLL FOR IN-PAGE ANCHORS
+   6. SMOOTH SCROLL WITH PRECISE OFFSET
    -------------------------------------------------------------------------- */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -305,15 +355,51 @@ function initSmoothScroll() {
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
-        const headerOffset = 64;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+}
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
+/* --------------------------------------------------------------------------
+   7. SCROLL SPY ACTIVE NAV HIGHLIGHT
+   -------------------------------------------------------------------------- */
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-menu a');
+  if (!sections.length || !navLinks.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
         });
       }
+    });
+  }, {
+    rootMargin: '-20% 0px -70% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(sec => observer.observe(sec));
+}
+
+/* --------------------------------------------------------------------------
+   8. QUICK COPY HELPLINE FEEDBACK
+   -------------------------------------------------------------------------- */
+function initQuickCopy() {
+  const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+  phoneLinks.forEach(link => {
+    link.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      navigator.clipboard?.writeText('+919360325750');
+      showAppleToast('Helpline +91 93603 25750 copied to clipboard', '📞');
     });
   });
 }
